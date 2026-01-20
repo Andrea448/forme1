@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - NARUDŽBA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .forma-sekcija {
+            flex: 2;
+            min-width: 300px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .sazetak-sekcija {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            height: fit-content;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        h3 {
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: #555;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus {
+            outline: none;
+            border-color: yellow;
+        }
+
+        button {
+            width: 100%;
+            background-color: black;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+
+        /* Stilovi za sažetak kupnje */
+        .proizvod-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .proizvod-item:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .proizvod-slika {
+            width: 80px;
+            height: 80px;
+            background-color: wheat;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .proizvod-slika img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .proizvod-detalji {
+            flex: 1;
+        }
+
+        .proizvod-naziv {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .proizvod-velicina {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 3px;
+        }
+
+        .proizvod-cijena {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .stara-cijena {
+            text-decoration: line-through;
+            color: #a59c9c;
+            font-size: 13px;
+        }
+
+        .nova-cijena {
+            color: green;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .ukupno {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 5px solid brown;
+        }
+
+        .ukupno-red {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .pdv-tekst {
+            font-size: 12px;
+            color: #999;
+            text-align: right;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- FORMA SEKCIJA -->
+    <div class="forma-sekcija">
+        <h2>Unesite podatke za narudžbu</h2>
+        
+        <form action="/submit" method="post">
+            
+            <h3> OSOBNI podaci</h3>
+            
+            <label for="ime">Ime</label>
+            <input type="text" id="ime" name="ime" placeholder="Unesite ime" required>
+            
+            <label for="prezime">Prezime</label>
+            <input type="text" id="prezime" name="prezime" placeholder="Unesite prezime" required>
+            
+            <label for="email">E-mail adresa</label>
+            <input type="email" id="email" name="email" placeholder="vasa@email.com" required>
+            
+            <h3>Adresa dostave</h3>
+            
+            <label for="adresa">Adresa</label>
+            <input type="text" id="adresa" name="adresa" placeholder="Ulica i kućni broj" required>
+            
+            <label for="grad">Grad / Mjesto</label>
+            <input type="text" id="grad" name="grad" placeholder="npr. Livno, Kupres..." required>
+            
+            <label for="postanski">Poštanski broj</label>
+            <input type="text" id="postanski" name="postanski" placeholder="npr. 72250" required>
+            
+            <label for="telefon">Telefonski broj / Mobitel</label>
+            <input type="tel" id="telefon" name="telefon" placeholder="+387 6x xxx xxx" required>
+            
+            <button type="submit">DALJE</button>
+            
+        </form>
+    </div>
+    
+    <!-- SAŽETAK KUPNJE SEKCIJA -->
+    <div class="sazetak-sekcija">
+        <h2>Sažetak kupnje</h2>
+        
+        <!-- Proizvod 1 -->
+        <div class="proizvod-item">
+            <div class="proizvod-slika">
+                <img src="majicadugihrukava.png" alt="Majica dugih rukava">
+            </div>
+            <div class="proizvod-detalji">
+                <div class="proizvod-naziv">Majica dugih rukava</div>
+                <div class="proizvod-velicina">Veličina: XS | Boja: Smeđa</div>
+                <div class="proizvod-velicina">Količina: 1</div>
+                <div class="proizvod-cijena">
+                    <span class="stara-cijena">69.95 KM</span>
+                    <span class="nova-cijena">23.95 KM</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Proizvod 2 -->
+        <div class="proizvod-item">
+            <div class="proizvod-slika">
+                <img src="prugastamajica.png" alt="Prugasta majica">
+            </div>
+            <div class="proizvod-detalji">
+                <div class="proizvod-naziv">Prugsasta majica dugih rukava</div>
+                <div class="proizvod-velicina">Veličina: M | Boja: Bijelo smeđa</div>
+                <div class="proizvod-velicina">Količina: 1</div>
+                <div class="proizvod-cijena">
+                    <span class="stara-cijena">45.00 KM</span>
+                    <span class="nova-cijena">19.90 KM</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Proizvod 3 -->
+        <div class="proizvod-item">
+            <div class="proizvod-slika">
+                <img src="ženske traperice.png" alt="Ženske plave traperice">
+            </div>
+            <div class="proizvod-detalji">
+                <div class="proizvod-naziv">Ženske plave traperice</div>
+                <div class="proizvod-velicina">Veličina: L | Boja: Plava</div>
+                <div class="proizvod-velicina">Količina: 1</div>
+                <div class="proizvod-cijena">
+                    <span class="stara-cijena">89.00 KM</span>
+                    <span class="nova-cijena">39.90 KM</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ukupno -->
+        <div class="ukupno">
+            <div class="ukupno-red">
+                <span>Ukupno:</span>
+                <span>83.75 KM</span>
+            </div>
+            <div class="pdv-tekst">(uključuje i PDV)</div>
+        </div>
+    </div>
+    
+</div>
+
+</body>
+</html>
